@@ -6,7 +6,7 @@ public class App {
     Restaurant restaurant;
 
     public App(){
-        this.restaurant = new Restaurant();
+        //this.restaurant = new Restaurant();
     }
 
     public void showMenu(){
@@ -15,9 +15,5 @@ public class App {
 
     public void executeOption(int selection){
 
-    }
-
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
     }
 }
