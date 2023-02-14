@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class Order {
@@ -22,23 +21,4 @@ public class Order {
 
     }
 
-    private int getNetCostOrder() {
-        return 0;
-    }
-
-    private int getTotalCostOrder() {
-        return 0;
-    }
-
-    private int getIVACostOrder() {
-        return 0;
-    }
-
-    private String generateBillTxt() {
-        return null;
-    }
-
-    public void saveBill(File billsFile) {
-
-    }
 }
