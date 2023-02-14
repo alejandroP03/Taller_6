@@ -7,7 +7,7 @@ public class Bill {
      */
     private Order billOrder;
 
-    public Bill(Order billOrder){
+    public Bill(Order<Product> billOrder){
         this.billOrder = billOrder;
     }
 
