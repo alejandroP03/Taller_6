@@ -1,13 +1,17 @@
 package view;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import controller.Order;
 import controller.Product;
 import controller.Restaurant;
 import model.DataHandler;
+import model.products.IngredientProduct;
 
 public class App {
     Restaurant restaurant;
@@ -15,6 +19,7 @@ public class App {
 
     public void executeApp() throws NumberFormatException, IOException {
         dh = new DataHandler();
+        uploadInfo();
         restaurant = new Restaurant(dh.getCombos(), dh.getMenu(), dh.getIngredients());
         int option;
         do {
@@ -33,6 +38,39 @@ public class App {
         System.out.println("3. Cerrar un pedido y guardar la factura");
         System.out.println("4. Consultar la información de un pedido dado su id");
         System.out.println("0. Salir");
+    }
+
+    private Product showRestaurantMenu(int typeOfProduct) throws IOException {
+        switch (typeOfProduct) {
+            case 1:
+                return listProducts(dh.getCombos());
+            case 2:
+                System.out.println(dh.getMenu());
+                return listProducts(dh.getMenu());
+            case 3:
+                return listProducts(dh.getIngredients());
+        }
+
+        return null;
+    }
+
+    private Product listProducts(ArrayList<? extends Product> prods) throws NumberFormatException, IOException {
+        int i = 0;
+        for (Product prod : prods) {
+            String addTxt = (prod instanceof IngredientProduct) ? "Adición de" : "";
+            System.out.println(String.format("%d. %s %s", ++i, addTxt, prod.getName()));
+        }
+
+        int prodSelection = Integer.parseInt(input("Producto seleccionado: "));
+        return prods.get(prodSelection);
+    }
+
+    private void uploadInfo() throws FileNotFoundException, IOException {
+        File ingrFile = new File("data/ingredientes.txt");
+        File comboFile = new File("data/combos.txt");
+        File meunFile = new File("data/menu.txt");
+
+        dh.UploadRestaurantInfo(ingrFile, meunFile, comboFile);
     }
 
     private void executeOption(int option) throws IOException {
@@ -60,10 +98,13 @@ public class App {
     }
 
     private void addProductInOrder() throws IOException {
-        Order actualOrder = restaurant.getOpenOrder();
-        Product newItem = null;
+        Order<Product> actualOrder = restaurant.getOpenOrder();
         if (actualOrder != null) {
-            actualOrder.addProduct(newItem);
+            System.out.println("1. Combos \n2. Productos del menu \n3. Ingredientes");
+            int typeOfProd = Integer.parseInt(input("Selleccione un tipo de producto: "));
+            Product selectedProd = showRestaurantMenu(typeOfProd);
+
+            actualOrder.addProduct(selectedProd);
         } else
             System.out.println("No hay ordenes abiertas");
     }

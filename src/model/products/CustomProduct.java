@@ -14,7 +14,7 @@ public class CustomProduct implements Product{
     }
 
     public String getName() {
-        return null;
+        return String.format("%s (modificado)", baseProduct.getName());
     };
 
     public int getPrice() {

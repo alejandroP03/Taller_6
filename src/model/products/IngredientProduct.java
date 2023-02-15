@@ -13,11 +13,11 @@ public class IngredientProduct implements Product{
 
 
     public int getPrice() {
-        return 0;
+        return price;
     };
 
     public String getName() {
-        return null;
+        return ingredientProductName;
     };
 
     public String generateBillTxt() {

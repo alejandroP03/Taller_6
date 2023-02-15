@@ -12,11 +12,11 @@ public class MenuProduct implements Product{
     }
 
     public String getName() {
-        return null;
+        return menuProductName;
     };
 
     public int getPrice() {
-        return 0;
+        return basisPrice;
     };
 
 

@@ -20,14 +20,23 @@ public class ComboProduct implements Product{
     }
 
     public int getPrice() {
-        return 0;
+        int sum = 0;
+        for (Product product : comboItems) {
+            sum += product.getPrice();
+        }
+        return (int) (sum * discount);
     };
 
     public String getName() {
-        return null;
+        return comboName;
     };
 
     public String generateBillTxt() {
-        return null;
+        String productNames = "";
+        for (Product product : comboItems) {
+            productNames += product + ", ";
+        }
+
+        return String.format("%s (%s): %i$", this.comboName, productNames, this.getPrice());
     };
 }

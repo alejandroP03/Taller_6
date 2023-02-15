@@ -13,6 +13,7 @@ public class Order <T extends Product>{
     public Order(String clientName, String clientAddress) {
         this.clientName = clientName;
         this.clientAddress = clientAddress;
+        this.orderItems = new ArrayList<T>();
         numOfOrders ++;
         this.orderId = numOfOrders;
     }
@@ -22,7 +23,8 @@ public class Order <T extends Product>{
     }
 
     public void addProduct(T newItem) {
-        orderItems.add(newItem);
+        this.orderItems.add(newItem);
+        System.out.println(orderItems);
     }
 
 }

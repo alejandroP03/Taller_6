@@ -21,7 +21,7 @@ public class MenuProductsUploader extends GenericUploader{
     @Override
     public void putEntry(String[] elemsLine) {
         String name = elemsLine[0];
-        int basisCost = Integer.parseInt(elemsLine[1]);
+        int basisCost = Integer.parseInt(elemsLine[1].substring(0, elemsLine[1].length() - 1)) / 100;
         MenuProduct new_product = new MenuProduct(name, basisCost);
         menuProduct.add(new_product);
         menuProductsSearch.put(name, new_product);
