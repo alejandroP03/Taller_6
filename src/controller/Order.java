@@ -22,9 +22,29 @@ public class Order <T extends Product>{
         return this.orderId;
     }
 
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getClientAddress() {
+        return clientAddress;
+    }
+
+    public int getOrderCost(){
+        int itemsCost = 0;
+        for (T item : orderItems) {
+            itemsCost += item.getPrice();
+        }
+
+        return itemsCost;
+    }
+
+    public ArrayList<T> getOrderItems() {
+        return orderItems;
+    }
+
     public void addProduct(T newItem) {
         this.orderItems.add(newItem);
-        System.out.println(orderItems);
     }
 
 }

@@ -1,32 +1,25 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-
-import model.products.ComboProduct;
-import model.products.IngredientProduct;
-import model.products.MenuProduct;
 
 public class Restaurant {
     ArrayList<Order<Product>> previousOrders;
     Order<Product> activeOrder;
+    static final File BillFilePath = new File("data/facturas.txt");
 
-    // Data
-    private ArrayList<ComboProduct> comboProducts;
-    private ArrayList<MenuProduct> menuProducts;
-    private ArrayList<IngredientProduct> ingredientsProducts;
-
-    public Restaurant(ArrayList<ComboProduct> comboProducts, ArrayList<MenuProduct> menuProducts,
-            ArrayList<IngredientProduct> ingredientsProducts) {
-        this.comboProducts = comboProducts;
-        this.menuProducts = menuProducts;
-        this.ingredientsProducts = ingredientsProducts;
+    public Restaurant() {
+        this.previousOrders = new ArrayList<Order<Product>>();
     }
 
     public void startOrder(String customerName, String customerAddress) {
         this.activeOrder = new Order<Product>(customerName, customerAddress);
     }
 
-    public void closeAndSaveOrder() {
+    public void closeAndSaveOrder() throws IOException {
+        Bill orderBill = new Bill(activeOrder);
+        orderBill.saveBill(BillFilePath);
         previousOrders.add(this.activeOrder);
         this.activeOrder = null;
     }
@@ -36,7 +29,7 @@ public class Restaurant {
     }
 
     public Order<Product> getPreviousOrder(int id) {
-        return previousOrders.get(id);
+        return previousOrders.get(id - 1);
     }
 
 }

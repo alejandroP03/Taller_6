@@ -21,6 +21,6 @@ public class IngredientProduct implements Product{
     };
 
     public String generateBillTxt() {
-        return null;
+        return String.format("\n*\t\tAdición de %s: %d$", ingredientProductName, price);
     };
 }

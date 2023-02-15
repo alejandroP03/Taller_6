@@ -16,7 +16,7 @@ public class ComboProduct implements Product{
     }
 
     public void addItemInCombo(Product itemProduct) {
-
+        comboItems.add(itemProduct);
     }
 
     public int getPrice() {
@@ -24,7 +24,7 @@ public class ComboProduct implements Product{
         for (Product product : comboItems) {
             sum += product.getPrice();
         }
-        return (int) (sum * discount);
+        return (int) (sum * (1 - discount));
     };
 
     public String getName() {
@@ -34,9 +34,10 @@ public class ComboProduct implements Product{
     public String generateBillTxt() {
         String productNames = "";
         for (Product product : comboItems) {
-            productNames += product + ", ";
+            productNames += product.getName() + ", ";
         }
+        productNames = productNames.substring(0, productNames.length() - 2);
 
-        return String.format("%s (%s): %i$", this.comboName, productNames, this.getPrice());
+        return String.format("%s (%s): %d$", this.comboName, productNames, this.getPrice());
     };
 }

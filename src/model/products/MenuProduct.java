@@ -21,6 +21,6 @@ public class MenuProduct implements Product{
 
 
     public String generateBillTxt() {
-        return null;
+        return String.format("%s: %d$", menuProductName, basisPrice);
     };
 }

@@ -54,6 +54,7 @@ public class DataHandler {
         MenuProductsUploader menu = new MenuProductsUploader(menuFile);
         menu.accessDocument();
         this.menuProductsList = menu.getProduct();
+        this.menuProductsSearchMap = menu.getProducts_search();
     }
 
     private void uploadCombos(File comboFile) throws FileNotFoundException, IOException {

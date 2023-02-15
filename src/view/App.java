@@ -11,16 +11,18 @@ import controller.Order;
 import controller.Product;
 import controller.Restaurant;
 import model.DataHandler;
+import model.products.CustomProduct;
 import model.products.IngredientProduct;
+import model.products.MenuProduct;
 
 public class App {
-    Restaurant restaurant;
-    DataHandler dh;
+    private Restaurant restaurant;
+    private DataHandler dh;
 
     public void executeApp() throws NumberFormatException, IOException {
         dh = new DataHandler();
         uploadInfo();
-        restaurant = new Restaurant(dh.getCombos(), dh.getMenu(), dh.getIngredients());
+        restaurant = new Restaurant();
         int option;
         do {
             System.out.println("Sistema de manejo de pedidos");
@@ -43,26 +45,48 @@ public class App {
     private Product showRestaurantMenu(int typeOfProduct) throws IOException {
         switch (typeOfProduct) {
             case 1:
-                return listProducts(dh.getCombos());
+                listProducts(dh.getCombos());
+                return selectProd(dh.getCombos());
             case 2:
-                System.out.println(dh.getMenu());
-                return listProducts(dh.getMenu());
-            case 3:
-                return listProducts(dh.getIngredients());
+                listProducts(dh.getMenu());
+                return selectProd(dh.getMenu());
         }
 
         return null;
     }
 
-    private Product listProducts(ArrayList<? extends Product> prods) throws NumberFormatException, IOException {
+    private void listProducts(ArrayList<? extends Product> prods) throws NumberFormatException, IOException {
         int i = 0;
         for (Product prod : prods) {
             String addTxt = (prod instanceof IngredientProduct) ? "Adición de" : "";
             System.out.println(String.format("%d. %s %s", ++i, addTxt, prod.getName()));
         }
+    }
 
+    private Product selectProd(ArrayList<? extends Product> prods) throws IOException {
         int prodSelection = Integer.parseInt(input("Producto seleccionado: "));
-        return prods.get(prodSelection);
+
+        Product selection = prods.get(prodSelection);
+
+        if (selection instanceof MenuProduct) {
+
+        if (input("¿Desea modificar el pedido? (S/n): ").equals(new String("S"))) {
+            CustomProduct customSelection = new CustomProduct(selection);
+            if (input("¿Desea adicionar ingredientes? (S/n): ").equals(new String("S"))) {
+                listProducts(dh.getIngredients());
+                int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: "));
+                customSelection.addIngredient(dh.getIngredients().get(ingredInd));
+            }
+            if (input("¿Desea quitar ingredientes? (S/n): ").equals(new String("S"))) {
+                listProducts(dh.getIngredients());
+                int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: "));
+                customSelection.removeIngredient(dh.getIngredients().get(ingredInd));
+            }
+            return customSelection;
+        }
+
+        }
+        return selection;
     }
 
     private void uploadInfo() throws FileNotFoundException, IOException {
@@ -100,7 +124,7 @@ public class App {
     private void addProductInOrder() throws IOException {
         Order<Product> actualOrder = restaurant.getOpenOrder();
         if (actualOrder != null) {
-            System.out.println("1. Combos \n2. Productos del menu \n3. Ingredientes");
+            System.out.println("1. Combos \n2. Productos del menu");
             int typeOfProd = Integer.parseInt(input("Selleccione un tipo de producto: "));
             Product selectedProd = showRestaurantMenu(typeOfProd);
 
@@ -109,7 +133,7 @@ public class App {
             System.out.println("No hay ordenes abiertas");
     }
 
-    private void closeAndSaveOrder() {
+    private void closeAndSaveOrder() throws IOException {
         if (restaurant.getOpenOrder() != null)
             restaurant.closeAndSaveOrder();
         else
@@ -119,6 +143,7 @@ public class App {
     private void getPreviousOrderById() throws NumberFormatException, IOException {
         Integer id = Integer.parseInt(input("Id del pedido: "));
         restaurant.getPreviousOrder(id);
+        /*TODO: preguntar al usuario que desea consultar */
     }
 
     BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
