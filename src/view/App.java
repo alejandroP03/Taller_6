@@ -64,7 +64,7 @@ public class App {
     }
 
     private Product selectProd(ArrayList<? extends Product> prods) throws IOException {
-        int prodSelection = Integer.parseInt(input("Producto seleccionado: "));
+        int prodSelection = Integer.parseInt(input("Producto seleccionado: ")) - 1;
 
         Product selection = prods.get(prodSelection);
 
