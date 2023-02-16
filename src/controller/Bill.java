@@ -37,7 +37,7 @@ public class Bill{
         return productsBill;
     }
 
-    private String generateBillTxt() {
+    public String generateBillTxt() {
         return String.format("* Hamburgesería \n* ID: %d \n* Cliente: %s \n* Dirección: %s \n*\n*\n*\n* Pedido: \n%s \n*\n*\n* Precio neto: %d\n* IVA: %d\n* Precio total: %d\n*\n*\n*\n* Gracias por su compra \n*\n*\n*", billOrder.getOrderId(), billOrder.getClientName(), billOrder.getClientAddress(), this.getProductsBill(), getNetCostOrder(), getIVACostOrder(), getTotalCostOrder());
     }
 

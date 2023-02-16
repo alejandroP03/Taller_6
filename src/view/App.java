@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import controller.Bill;
 import controller.Order;
 import controller.Product;
 import controller.Restaurant;
@@ -142,8 +143,9 @@ public class App {
 
     private void getPreviousOrderById() throws NumberFormatException, IOException {
         Integer id = Integer.parseInt(input("Id del pedido: "));
-        restaurant.getPreviousOrder(id);
-        /*TODO: preguntar al usuario que desea consultar */
+        Order<Product> queryOrder = restaurant.getPreviousOrder(id);
+        Bill orderInfo = new Bill(queryOrder);
+        System.out.println(orderInfo.generateBillTxt());
     }
 
     BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
