@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Restaurant {
     ArrayList<Order<Product>> previousOrders;
     Order<Product> activeOrder;
-    static final File BillFilePath = new File("data/facturas.txt");
+    private static final File BillFilePath = new File("data/facturas.txt");
 
     public Restaurant() {
         this.previousOrders = new ArrayList<Order<Product>>();

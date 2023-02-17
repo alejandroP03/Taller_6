@@ -9,16 +9,15 @@ import java.io.IOException;
 public abstract class GenericUploader {
     private File document_name;
 
-
-    public GenericUploader(File document_name){
+    public GenericUploader(File document_name) {
         this.document_name = document_name;
     }
 
-    public void accessDocument() throws IOException, FileNotFoundException{
+    public void accessDocument() throws IOException, FileNotFoundException {
         BufferedReader text_input = new BufferedReader(new FileReader(document_name));
-        
+
         String line = text_input.readLine();
-        while(line != null){
+        while (line != null) {
             String[] elemsLine = line.split(";");
             putEntry(elemsLine);
             line = text_input.readLine();

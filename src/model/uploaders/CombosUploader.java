@@ -8,11 +8,11 @@ import controller.Product;
 import model.products.ComboProduct;
 import model.products.MenuProduct;
 
-public class CombosUploader extends GenericUploader{
+public class CombosUploader extends GenericUploader {
     private ArrayList<ComboProduct> combos;
     private HashMap<String, MenuProduct> menuProductsSearchMap;
 
-    public CombosUploader(File document_name, HashMap<String, MenuProduct> menuProductsSearchMap){
+    public CombosUploader(File document_name, HashMap<String, MenuProduct> menuProductsSearchMap) {
         super(document_name);
         this.combos = new ArrayList<ComboProduct>();
         this.menuProductsSearchMap = menuProductsSearchMap;

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import model.products.IngredientProduct;
 
-public class IngredientsUploader extends GenericUploader{
+public class IngredientsUploader extends GenericUploader {
     private ArrayList<IngredientProduct> ingredientsList;
 
-    public IngredientsUploader(File document_name){
+    public IngredientsUploader(File document_name) {
         super(document_name);
         this.ingredientsList = new ArrayList<IngredientProduct>();
     }

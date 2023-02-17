@@ -43,7 +43,7 @@ public class App {
         System.out.println("0. Salir");
     }
 
-    private Product showRestaurantMenu(int typeOfProduct) throws IOException {
+    private Product productSelection(int typeOfProduct) throws IOException {
         switch (typeOfProduct) {
             case 1:
                 listProducts(dh.getCombos());
@@ -71,20 +71,20 @@ public class App {
 
         if (selection instanceof MenuProduct) {
 
-        if (input("¿Desea modificar el pedido? (S/n): ").equals(new String("S"))) {
-            CustomProduct customSelection = new CustomProduct(selection);
-            if (input("¿Desea adicionar ingredientes? (S/n): ").equals(new String("S"))) {
-                listProducts(dh.getIngredients());
-                int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: "));
-                customSelection.addIngredient(dh.getIngredients().get(ingredInd));
+            if (input("¿Desea modificar el pedido? (S/n): ").equals(new String("S"))) {
+                CustomProduct customSelection = new CustomProduct(selection);
+                if (input("¿Desea adicionar ingredientes? (S/n): ").equals(new String("S"))) {
+                    listProducts(dh.getIngredients());
+                    int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: ")) - 1;
+                    customSelection.addIngredient(dh.getIngredients().get(ingredInd));
+                }
+                if (input("¿Desea quitar ingredientes? (S/n): ").equals(new String("S"))) {
+                    listProducts(dh.getIngredients());
+                    int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: "));
+                    customSelection.removeIngredient(dh.getIngredients().get(ingredInd));
+                }
+                return customSelection;
             }
-            if (input("¿Desea quitar ingredientes? (S/n): ").equals(new String("S"))) {
-                listProducts(dh.getIngredients());
-                int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: "));
-                customSelection.removeIngredient(dh.getIngredients().get(ingredInd));
-            }
-            return customSelection;
-        }
 
         }
         return selection;
@@ -127,7 +127,7 @@ public class App {
         if (actualOrder != null) {
             System.out.println("1. Combos \n2. Productos del menu");
             int typeOfProd = Integer.parseInt(input("Selleccione un tipo de producto: "));
-            Product selectedProd = showRestaurantMenu(typeOfProd);
+            Product selectedProd = productSelection(typeOfProd);
 
             actualOrder.addProduct(selectedProd);
         } else

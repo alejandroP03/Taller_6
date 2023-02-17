@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import controller.Product;
 
-public class ComboProduct implements Product{
+public class ComboProduct implements Product {
     private float discount;
     private String comboName;
     private ArrayList<Product> comboItems;

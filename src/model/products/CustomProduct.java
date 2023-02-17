@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import controller.Product;
 
-public class CustomProduct implements Product{
+public class CustomProduct implements Product {
     private Product baseProduct;
     private ArrayList<Product> addedProducts;
     private ArrayList<Product> deletedProducts;
@@ -19,7 +19,6 @@ public class CustomProduct implements Product{
         return String.format("%s (modificado)", baseProduct.getName());
     };
 
-
     public int getPrice() {
         int additionalPrice = 0;
         for (Product product : addedProducts) {
@@ -28,11 +27,11 @@ public class CustomProduct implements Product{
         return baseProduct.getPrice() + additionalPrice;
     };
 
-    public void addIngredient(Product addition){
+    public void addIngredient(Product addition) {
         addedProducts.add(addition);
     }
 
-    public void removeIngredient(Product item){
+    public void removeIngredient(Product item) {
         deletedProducts.add(item);
     }
 

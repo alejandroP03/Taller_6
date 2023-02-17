@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-public class Order <T extends Product>{
+public class Order<T extends Product> {
     private static int numOfOrders = 0;
     private int orderId;
     private String clientName;
@@ -14,7 +14,7 @@ public class Order <T extends Product>{
         this.clientName = clientName;
         this.clientAddress = clientAddress;
         this.orderItems = new ArrayList<T>();
-        numOfOrders ++;
+        numOfOrders++;
         this.orderId = numOfOrders;
     }
 
@@ -30,7 +30,7 @@ public class Order <T extends Product>{
         return clientAddress;
     }
 
-    public int getOrderCost(){
+    public int getOrderCost() {
         int itemsCost = 0;
         for (T item : orderItems) {
             itemsCost += item.getPrice();

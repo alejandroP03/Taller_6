@@ -6,17 +6,17 @@ import java.util.HashMap;
 
 import model.products.MenuProduct;
 
-public class MenuProductsUploader extends GenericUploader{
+public class MenuProductsUploader extends GenericUploader {
     private ArrayList<MenuProduct> menuProduct;
     private HashMap<String, MenuProduct> menuProductsSearch;
 
-    public MenuProductsUploader(File document_name){
+    public MenuProductsUploader(File document_name) {
         super(document_name);
         menuProduct = new ArrayList<MenuProduct>();
         menuProductsSearch = new HashMap<String, MenuProduct>();
 
     }
-    
+
     @Override
     public void putEntry(String[] elemsLine) {
         String name = elemsLine[0];

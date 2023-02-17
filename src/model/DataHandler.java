@@ -19,7 +19,7 @@ public class DataHandler {
     private ArrayList<IngredientProduct> ingredientsProductsList;
     private HashMap<String, MenuProduct> menuProductsSearchMap;
 
-    public DataHandler(){
+    public DataHandler() {
         this.comboProductsList = new ArrayList<ComboProduct>();
         this.menuProductsList = new ArrayList<MenuProduct>();
         this.ingredientsProductsList = new ArrayList<IngredientProduct>();
@@ -38,7 +38,8 @@ public class DataHandler {
         return comboProductsList;
     }
 
-    public void UploadRestaurantInfo(File ingredientsFile, File menuFile, File combosFile) throws FileNotFoundException, IOException {
+    public void UploadRestaurantInfo(File ingredientsFile, File menuFile, File combosFile)
+            throws FileNotFoundException, IOException {
         uploadIngredients(ingredientsFile);
         uploadMenu(menuFile);
         uploadCombos(combosFile);

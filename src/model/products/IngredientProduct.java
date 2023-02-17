@@ -2,7 +2,7 @@ package model.products;
 
 import controller.Product;
 
-public class IngredientProduct implements Product{
+public class IngredientProduct implements Product {
     private String ingredientProductName;
     private int price;
 
@@ -10,7 +10,6 @@ public class IngredientProduct implements Product{
         this.ingredientProductName = ingredientProductName;
         this.price = price;
     }
-
 
     public int getPrice() {
         return price;

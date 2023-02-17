@@ -2,7 +2,7 @@ package model.products;
 
 import controller.Product;
 
-public class MenuProduct implements Product{
+public class MenuProduct implements Product {
     private int basisPrice;
     private String menuProductName;
 
@@ -18,7 +18,6 @@ public class MenuProduct implements Product{
     public int getPrice() {
         return basisPrice;
     };
-
 
     public String generateBillTxt() {
         return String.format("%s: %d$", menuProductName, basisPrice);

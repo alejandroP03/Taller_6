@@ -5,17 +5,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Bill{
-    /*Bill get the bill logic of Order class in order to mantain the one responsability principle
+public class Bill {
+    /*
+     * Bill get the bill logic of Order class in order to mantain the one
+     * responsability principle
      */
     private Order<Product> billOrder;
-    public final static int widthBillText = 120;
 
-    public Bill(Order<Product> billOrder){
+    public Bill(Order<Product> billOrder) {
         this.billOrder = billOrder;
     }
 
-     private int getNetCostOrder() {
+    private int getNetCostOrder() {
         return this.billOrder.getOrderCost();
     }
 
@@ -27,7 +28,7 @@ public class Bill{
         return (int) (this.billOrder.getOrderCost() * 0.19);
     }
 
-    private String getProductsBill(){
+    private String getProductsBill() {
         ArrayList<Product> prodList = billOrder.getOrderItems();
         String productsBill = "";
         for (Product prod : prodList) {
@@ -38,7 +39,10 @@ public class Bill{
     }
 
     public String generateBillTxt() {
-        return String.format("* Hamburgesería \n* ID: %d \n* Cliente: %s \n* Dirección: %s \n*\n*\n*\n* Pedido: \n%s \n*\n*\n* Precio neto: %d\n* IVA: %d\n* Precio total: %d\n*\n*\n*\n* Gracias por su compra \n*\n*\n*", billOrder.getOrderId(), billOrder.getClientName(), billOrder.getClientAddress(), this.getProductsBill(), getNetCostOrder(), getIVACostOrder(), getTotalCostOrder());
+        return String.format(
+                "* Hamburgesería \n* ID: %d \n* Cliente: %s \n* Dirección: %s \n*\n*\n*\n* Pedido: \n%s \n*\n*\n* Precio neto: %d\n* IVA: %d\n* Precio total: %d\n*\n*\n*\n* Gracias por su compra \n*\n*\n*",
+                billOrder.getOrderId(), billOrder.getClientName(), billOrder.getClientAddress(), this.getProductsBill(),
+                getNetCostOrder(), getIVACostOrder(), getTotalCostOrder());
     }
 
     public void saveBill(File billsFile) throws IOException {
