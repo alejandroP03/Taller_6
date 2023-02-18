@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.products.ComboProduct;
+import model.products.DrinksProduct;
 import model.products.IngredientProduct;
 import model.products.MenuProduct;
 import model.uploaders.CombosUploader;
+import model.uploaders.DrinksUploader;
 import model.uploaders.IngredientsUploader;
 import model.uploaders.MenuProductsUploader;
 
@@ -18,12 +20,16 @@ public class DataHandler {
     private ArrayList<MenuProduct> menuProductsList;
     private ArrayList<IngredientProduct> ingredientsProductsList;
     private HashMap<String, MenuProduct> menuProductsSearchMap;
+    private ArrayList<DrinksProduct> drinksProductsList;
+    private HashMap<String, DrinksProduct> drinkProductsSearchMap;
 
     public DataHandler() {
         this.comboProductsList = new ArrayList<ComboProduct>();
         this.menuProductsList = new ArrayList<MenuProduct>();
         this.ingredientsProductsList = new ArrayList<IngredientProduct>();
         this.menuProductsSearchMap = new HashMap<String, MenuProduct>();
+        this.drinksProductsList = new ArrayList<DrinksProduct>();
+        this.drinkProductsSearchMap = new HashMap<String, DrinksProduct>();
     }
 
     public ArrayList<MenuProduct> getMenu() {
@@ -38,11 +44,17 @@ public class DataHandler {
         return comboProductsList;
     }
 
-    public void UploadRestaurantInfo(File ingredientsFile, File menuFile, File combosFile)
+    public ArrayList<DrinksProduct> getDrinks() {
+        return drinksProductsList;
+    }
+
+    public void UploadRestaurantInfo(File ingredientsFile, File menuFile, File combosFile, File drinksFile)
             throws FileNotFoundException, IOException {
         uploadIngredients(ingredientsFile);
         uploadMenu(menuFile);
+        uploadDrinks(drinksFile);
         uploadCombos(combosFile);
+        // agregar la relacion de composicion
     }
 
     private void uploadIngredients(File ingredientsFile) throws FileNotFoundException, IOException {
@@ -58,8 +70,15 @@ public class DataHandler {
         this.menuProductsSearchMap = menu.getProducts_search();
     }
 
+    private void uploadDrinks(File drinksFile) throws FileNotFoundException, IOException {
+        DrinksUploader drinks = new DrinksUploader(drinksFile);
+        drinks.accessDocument();
+        this.drinksProductsList = drinks.getProduct();
+        this.drinkProductsSearchMap = drinks.getProducts_search();
+    }
+
     private void uploadCombos(File comboFile) throws FileNotFoundException, IOException {
-        CombosUploader combos = new CombosUploader(comboFile, menuProductsSearchMap);
+        CombosUploader combos = new CombosUploader(comboFile, menuProductsSearchMap, drinkProductsSearchMap);
         combos.accessDocument();
         this.comboProductsList = combos.getCombo();
     }

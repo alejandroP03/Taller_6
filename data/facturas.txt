@@ -1,0 +1,22 @@
+* Hamburgesería 
+* ID: 1 
+* Cliente: AAAAAAAAAAA 
+* Dirección: aaaaaaaaaaaaaa 
+*
+*
+*
+* Pedido: 
+* gaseosa: 5000$ 
+ 
+*
+*
+* Precio neto: 5000
+* IVA: 950
+* Precio total: 5950
+*
+*
+*
+* Gracias por su compra 
+*
+*
+*

@@ -51,6 +51,9 @@ public class App {
             case 2:
                 listProducts(dh.getMenu());
                 return selectProd(dh.getMenu());
+            case 3:
+                listProducts(dh.getDrinks());
+                return selectProd(dh.getDrinks());
         }
 
         return null;
@@ -80,7 +83,7 @@ public class App {
                 }
                 if (input("¿Desea quitar ingredientes? (S/n): ").equals(new String("S"))) {
                     listProducts(dh.getIngredients());
-                    int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: "));
+                    int ingredInd = Integer.parseInt(input("Selleccione un ingrediente: ")) - 1;
                     customSelection.removeIngredient(dh.getIngredients().get(ingredInd));
                 }
                 return customSelection;
@@ -93,9 +96,10 @@ public class App {
     private void uploadInfo() throws FileNotFoundException, IOException {
         File ingrFile = new File("data/ingredientes.txt");
         File comboFile = new File("data/combos.txt");
-        File meunFile = new File("data/menu.txt");
+        File menuFile = new File("data/menu.txt");
+        File drinksFile = new File("data/drinks.txt");
 
-        dh.UploadRestaurantInfo(ingrFile, meunFile, comboFile);
+        dh.UploadRestaurantInfo(ingrFile, menuFile, comboFile, drinksFile);
     }
 
     private void executeOption(int option) throws IOException {
@@ -125,7 +129,7 @@ public class App {
     private void addProductInOrder() throws IOException {
         Order<Product> actualOrder = restaurant.getOpenOrder();
         if (actualOrder != null) {
-            System.out.println("1. Combos \n2. Productos del menu");
+            System.out.println("1. Combos \n2. Productos del menu \n3. Bebidas");
             int typeOfProd = Integer.parseInt(input("Selleccione un tipo de producto: "));
             Product selectedProd = productSelection(typeOfProd);
 
