@@ -17,6 +17,15 @@ public class Restaurant {
         this.activeOrder = new Order<Product>(customerName, customerAddress);
     }
 
+    public boolean hasAlreadyOrdered() {
+        for (Order<Product> order : previousOrders) {
+            if (this.activeOrder.getOrderItems().equals(order.getOrderItems()))
+                return true;
+        }
+        return false;
+
+    }
+
     public void closeAndSaveOrder() throws IOException {
         Bill orderBill = new Bill(activeOrder);
         orderBill.saveBill(BillFilePath);

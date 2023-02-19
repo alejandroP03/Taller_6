@@ -139,9 +139,10 @@ public class App {
     }
 
     private void closeAndSaveOrder() throws IOException {
-        if (restaurant.getOpenOrder() != null)
+        if (restaurant.getOpenOrder() != null) {
+            System.out.println(restaurant.hasAlreadyOrdered() ? "!Ya se realizó una orden con el mismo pedido¡" : "");
             restaurant.closeAndSaveOrder();
-        else
+        } else
             System.out.println("No hay ordenes abiertas");
     }
 

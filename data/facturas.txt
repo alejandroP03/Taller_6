@@ -1,18 +1,18 @@
 * Hamburgesería 
-* ID: 1 
-* Cliente: AAAAAAAAAAA 
-* Dirección: aaaaaaaaaaaaaa 
+* ID: 2 
+* Cliente: a 
+* Dirección: a 
 *
 *
 *
 * Pedido: 
-* gaseosa: 5000$ 
+* combo corral (corral, papas medianas, gaseosa): 22050$ 
  
 *
 *
-* Precio neto: 5000
-* IVA: 950
-* Precio total: 5950
+* Precio neto: 22050
+* IVA: 4189
+* Precio total: 26239
 *
 *
 *
