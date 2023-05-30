@@ -46,11 +46,16 @@ public class Order<T extends Product> {
     }
 
     public void addProduct(T newItem) {
-        if (getOrderCost() + newItem.getPrice() < 150000) {
-            this.orderItems.add(newItem);
-        } else {
-            throw new ExceededOrderPrice("El pedido no puede superar los 150.000 COP");
+        try {
+            if (getOrderCost() + newItem.getPrice() < 150000) {
+                this.orderItems.add(newItem);
+            } else {
+                throw new ExceededOrderPrice("Agregar el producto " + newItem.getName() + " supera los 150.000 COP");
+            }
+        } catch (ExceededOrderPrice e) {
+            System.out.println(e.getMessage());
         }
+
     }
 
     public static void deleteIdsCount() {

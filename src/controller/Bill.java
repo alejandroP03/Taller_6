@@ -50,12 +50,12 @@ public class Bill {
     public void saveBill(File billsFile) throws IOException {
         BufferedReader savedFile = new BufferedReader(new FileReader(billsFile));
         String line = "";
-        while(line != null){
+        while (line != null) {
             line = savedFile.readLine();
         }
         savedFile.close();
         FileWriter fr = new FileWriter(billsFile);
-        fr.append(generateBillTxt());
+        fr.write(generateBillTxt());
         fr.close();
     }
 }

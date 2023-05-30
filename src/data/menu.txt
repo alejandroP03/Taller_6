@@ -1,5 +1,5 @@
 corral;14000
-corral queso;16000
+corral queso;160000
 corral pollo;15000
 corralita;13000
 todoterreno;25000

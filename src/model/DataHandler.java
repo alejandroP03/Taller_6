@@ -69,10 +69,15 @@ public class DataHandler {
     }
 
     private void uploadMenu(File menuFile) throws FileNotFoundException, IOException {
-        MenuProductsUploader menu = new MenuProductsUploader(menuFile);
-        menu.accessDocument();
-        this.menuProductsList = menu.getProduct();
-        this.menuProductsSearchMap = menu.getProducts_search();
+        try {
+            MenuProductsUploader menu = new MenuProductsUploader(menuFile);
+            menu.accessDocument();
+            this.menuProductsList = menu.getProduct();
+            this.menuProductsSearchMap = menu.getProducts_search();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
     }
 
     private void uploadDrinks(File drinksFile) throws FileNotFoundException, IOException {
