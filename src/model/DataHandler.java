@@ -58,9 +58,14 @@ public class DataHandler {
     }
 
     private void uploadIngredients(File ingredientsFile) throws FileNotFoundException, IOException {
-        IngredientsUploader ingredients = new IngredientsUploader(ingredientsFile);
-        ingredients.accessDocument();
-        this.ingredientsProductsList = ingredients.getIngredients();
+        try {
+            IngredientsUploader ingredients = new IngredientsUploader(ingredientsFile);
+            ingredients.accessDocument();
+            this.ingredientsProductsList = ingredients.getIngredients();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
     }
 
     private void uploadMenu(File menuFile) throws FileNotFoundException, IOException {

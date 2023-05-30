@@ -46,4 +46,12 @@ public class CustomProduct implements Product {
 
         return String.format("%s %s", baseProduct.generateBillTxt(), productNames);
     };
+
+    public ArrayList<Product> getAddedProducts() {
+        return addedProducts;
+    }
+
+    public ArrayList<Product> getDeletedProducts() {
+        return deletedProducts;
+    }
 }

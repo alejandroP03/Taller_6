@@ -94,12 +94,13 @@ public class App {
     }
 
     private void uploadInfo() throws FileNotFoundException, IOException {
-        File ingrFile = new File("data/ingredientes.txt");
-        File comboFile = new File("data/combos.txt");
-        File menuFile = new File("data/menu.txt");
-        File drinksFile = new File("data/drinks.txt");
+        File ingrFile = new File("src/data/ingredientes.txt");
+        File comboFile = new File("src/data/combos.txt");
+        File menuFile = new File("src/data/menu.txt");
+        File drinksFile = new File("src/data/drinks.txt");
 
         dh.UploadRestaurantInfo(ingrFile, menuFile, comboFile, drinksFile);
+
     }
 
     private void executeOption(int option) throws IOException {

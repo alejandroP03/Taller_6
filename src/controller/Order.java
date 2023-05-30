@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import QA.exceptions.ExceededOrderPrice;
+
 public class Order<T extends Product> {
     private static int numOfOrders = 0;
     private int orderId;
@@ -44,7 +46,15 @@ public class Order<T extends Product> {
     }
 
     public void addProduct(T newItem) {
-        this.orderItems.add(newItem);
+        if (getOrderCost() + newItem.getPrice() < 150000) {
+            this.orderItems.add(newItem);
+        } else {
+            throw new ExceededOrderPrice("El pedido no puede superar los 150.000 COP");
+        }
+    }
+
+    public static void deleteIdsCount() {
+        numOfOrders = 0;
     }
 
 }

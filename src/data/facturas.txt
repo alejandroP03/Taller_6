@@ -1,0 +1,23 @@
+* Hamburgesería 
+* ID: 1 
+* Cliente: sdf 
+* Dirección: dssdf 
+*
+*
+*
+* Pedido: 
+* combo corral queso (corral queso, papas medianas, gaseosa): 23850$ 
+* corralita: 13000$ 
+*		Sin tocineta express: 0$ 
+*
+*
+* Precio neto: 36850
+* IVA: 7001
+* Precio total: 43851
+*
+*
+*
+* Gracias por su compra 
+*
+*
+*

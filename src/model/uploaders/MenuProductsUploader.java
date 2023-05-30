@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import QA.exceptions.RepeatedProductException;
 import model.products.MenuProduct;
 
 public class MenuProductsUploader extends GenericUploader {
@@ -22,8 +23,13 @@ public class MenuProductsUploader extends GenericUploader {
         String name = elemsLine[0];
         int basisCost = Integer.parseInt(elemsLine[1]);
         MenuProduct new_product = new MenuProduct(name, basisCost);
-        menuProduct.add(new_product);
-        menuProductsSearch.put(name, new_product);
+        if (!menuProductsSearch.containsKey(name)) {
+            menuProduct.add(new_product);
+            menuProductsSearch.put(name, new_product);
+        } else {
+            throw new RepeatedProductException("El producto " + name + " ya existe, modifique el archivo y reinicie la aplicacion");
+        }
+
     }
 
     public ArrayList<MenuProduct> getProduct() {

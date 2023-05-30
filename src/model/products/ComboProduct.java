@@ -31,6 +31,10 @@ public class ComboProduct implements Product {
         return comboName;
     };
 
+    public ArrayList<Product> getComboItems() {
+        return comboItems;
+    }
+
     public String generateBillTxt() {
         String productNames = "";
         for (Product product : comboItems) {

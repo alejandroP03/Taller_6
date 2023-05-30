@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class Restaurant {
     ArrayList<Order<Product>> previousOrders;
     Order<Product> activeOrder;
-    private static final File BillFilePath = new File("data/facturas.txt");
+
+    private final String billFilePath = this.getClass().getResource("/data/facturas.txt").getPath();
+    private final File billFile = new File(billFilePath);
 
     public Restaurant() {
         this.previousOrders = new ArrayList<Order<Product>>();
@@ -28,7 +30,7 @@ public class Restaurant {
 
     public void closeAndSaveOrder() throws IOException {
         Bill orderBill = new Bill(activeOrder);
-        orderBill.saveBill(BillFilePath);
+        orderBill.saveBill(billFile);
         previousOrders.add(this.activeOrder);
         this.activeOrder = null;
     }
